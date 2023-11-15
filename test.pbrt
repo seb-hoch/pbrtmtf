@@ -1,0 +1,42 @@
+LookAt	0	0	0
+	0	1	0
+	0	0	1
+
+Camera	"realistic"
+	"string lensfile"	"test.dat"
+	"float aperturediameter"	[42.6]
+	"float focusdistance"	[100]
+
+Film	"gbuffer"
+	"string	filename"	"test.exr"
+	"integer xresolution"	[512]
+	"integer yresolution"	[512]
+	"float diagonal"	[46.18]
+	"bool savefp16"	true
+
+Sampler	"halton"
+	"integer pixelsamples"	[16]
+
+
+WorldBegin
+
+LightSource	"infinite"
+	"rgb	L"	[.4	.45	.5]
+
+
+	AttributeBegin
+
+	Texture	"checks"	"spectrum"	"checkerboard"
+		"float uscale"	[10]
+		"float vscale"	[10]
+		"rgb tex1"	[0.1	0.1	0.1]
+		"rgb tex2"	[0.9	0.9	0.9]
+	Material	"diffuse"	"texture	reflectance"	"checks"
+	Translate	0	100	0
+	Rotate	30	0	1	0
+	Shape	"bilinearmesh"
+		"point3	P"	[	-1	0	-1		1	0	-1		-1	0	1		1	0	1]
+		"point2	uv"	[	0	0		0	1		1	0		1	1]
+
+	AttributeEnd
+
